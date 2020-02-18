@@ -17,6 +17,14 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('whatsapp')->unique();
+            $table->string('avatar')->nullable();
+            $table->enum('type', [1, 0]);
+            $table->enum('licensed', [1, 0]);
+            $table->bigInteger('city_id')->unsigned()->nullable();
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->bigInteger('institution_id')->unsigned()->nullable();
+            $table->foreign('institution_id')->references('id')->on('institutions')->onDelete('cascade');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
