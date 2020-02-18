@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('whatsapp')->unique();
+            $table->string('whatsapp')->unique()->nullable();
             $table->string('avatar')->nullable();
             $table->enum('type', [1, 0]);
             $table->enum('licensed', [1, 0]);

@@ -2,12 +2,19 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import vuetify from './vuetify'
+import vuetify from './vuetify';
+import routes from './routes';
+import VueRouter from 'vue-router';
+
 import App from './components/App.vue';
-import Layout from './components/Baseline.vue';
+
+import { doLogin } from './requests';
+
+
 
 const app = new Vue({
     vuetify,
-    render: h => h(Layout),
+    router: new VueRouter({ routes }),
+    render: h => h(App),
     el: '#app',
 });
