@@ -2,11 +2,14 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Notifications\VerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\MailResetPasswordNotification;
 
-class User extends Authenticatable
+class User extends AuthenticatableForUser implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -16,8 +19,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'avatar', 'whatsapp', 'position_id', 'state_id', 'institution_id', 'licensed'. 'type'
     ];
+    public function sendPasswordResetNotification($token){
+
+        $this->notify(new MailResetPasswordNotification($token));
+    }
+    public function sendEmailVerificationNotification(){
+
+        $this->notify(new VerifyEmail);
+    }
 
     /**
      * The attributes that should be hidden for arrays.
