@@ -53,7 +53,7 @@
             $cities = City::
             join('states', 'states.id','cities.state_id' )
             ->select('cities.*', 'states.state',
-            DB::raw('(SELECT COUNT(*) FROM insititutions WHERE insititutions.city_id = cities.id) as count')
+            DB::raw('(SELECT COUNT(*) FROM institutions WHERE institutions.city_id = cities.id) as count')
             )->orderBy('state')->get();
             $states = State::orderBy('state')->get();
             return response()->json(['message' => "Operação realizada com sucesso.", 'cities' => $cities,   'states'=> $states, 'success' => true]);
