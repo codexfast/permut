@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->enum('type', [1, 0]);
             $table->enum('licensed', [1, 0]);
+            $table->bigInteger('position_id')->unsigned()->nullable();
+            $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
             $table->bigInteger('city_id')->unsigned()->nullable();
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->bigInteger('institution_id')->unsigned()->nullable();
