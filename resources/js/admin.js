@@ -3,11 +3,11 @@ import Swal from 'sweetalert2';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
-import { routes } from './routes_user';
+import { routes } from './routes_admin';
 import StoreData from './store';
 import App from './components/App.vue';
 import VueProgressBar from 'vue-progressbar'
-import { initialize_user } from './helpers/general_user';
+import { initialize_admin } from './helpers/general_admin';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 
@@ -42,7 +42,6 @@ const router = new VueRouter({
         }
     }
 });
-
 const options = {
     color: '#bffaf3',
     failedColor: '#874b4b',
@@ -59,12 +58,11 @@ const options = {
 Vue.use(VueProgressBar, options)
 Vue.use(Loading);
 
-initialize_user(store, router);
+initialize_admin(store, router);
 
 
-
-const app = new Vue({
-    el: '#app',
+const admin = new Vue({
+    el: '#admin',
     router,
     store,
     components: {

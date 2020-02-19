@@ -36,6 +36,16 @@ Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'user'], function(){
     Route::post('logout', 'UserController@logout');
     Route::put('update', 'UserController@update');
     Route::put('update-password', 'UserController@updatePassword');
+
+    Route::get('search', 'SearchController@index');
+    Route::get('messages', 'MessageController@get');
+    Route::post('message-create', 'MessageController@create');
+
+    Route::get('permuts', 'PermutController@get');
+    Route::post('permut-create', 'PermutController@create');
+    Route::put('permut-update', 'PermutController@update');
+
+    Route::get('payments', 'PaymentController@get');
 });
 //user
 
@@ -75,6 +85,12 @@ Route::group(['middleware' => ['jwt.admin'], 'prefix' => 'admin'], function(){
     Route::post('create-institution', 'InstitutionController@create');
     Route::put('update-institution', 'InstitutionController@update');
     Route::delete('delete-institution', 'InstitutionController@destroy');
+
+    Route::get('messages', 'MessageController@getAll');
+
+    Route::get('permuts', 'PermutController@getAll');
+
+    Route::get('payments', 'PaymentController@getAll');
 });
 
     
