@@ -1,15 +1,15 @@
-import Index from './components/admin/index.vue';
-import Login from './components/admin/auth/Login.vue';
-import Recover from './components/admin/auth/Recover.vue';
-import ResetPassword from './components/admin/auth/ResetPassword.vue';
-import VerifyEmail from './components/admin/auth/VerifyEmail.vue';
-import NotFound from './components/NotFound.vue';
+import Index from './components/admin/pages/index.vue';
+import Login from './components/admin/pages/auth/Login.vue';
+import Recover from './components/admin/pages/auth/Recover.vue';
+import ResetPassword from './components/admin/pages/auth/ResetPassword.vue';
+import VerifyEmail from './components/admin/pages/auth/VerifyEmail.vue';
+import NotFound from './components/admin/pages/NotFound.vue';
 
 
 
 const progress = {
     func: [
-        { call: 'color', modifier: 'temp', argument: '#238238' },
+        { call: 'color', modifier: 'temp', argument: '#631b77' },
         { call: 'fail', modifier: 'temp', argument: '#6e0000' },
         { call: 'location', modifier: 'temp', argument: 'top' },
         { call: 'transition', modifier: 'temp', argument: { speed: '1.5s', opacity: '0.6s', termination: 400 } }

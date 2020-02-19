@@ -1,11 +1,10 @@
 require('./bootstrap');
-import Swal from 'sweetalert2';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import { routes } from './routes_admin';
 import StoreData from './store';
-import App from './components/App.vue';
+import App from './components/admin/App.vue';
 import VueProgressBar from 'vue-progressbar'
 import { initialize_admin } from './helpers/general_admin';
 import Loading from 'vue-loading-overlay';
@@ -28,8 +27,9 @@ const store = new Vuex.Store(StoreData);
 
 
 const router = new VueRouter({
-    routes,
     mode: 'history',
+    linkExactActiveClass: 'active',
+    routes,
     scrollBehavior: (to, from, savedPosition) =>{
         if (savedPosition){
             return savedPosition;
@@ -43,7 +43,7 @@ const router = new VueRouter({
     }
 });
 const options = {
-    color: '#bffaf3',
+    color: '#631b77',
     failedColor: '#874b4b',
     thickness: '5px',
     transition: {
@@ -52,7 +52,7 @@ const options = {
         termination: 300
     },
     autoRevert: true,
-    location: 'left',
+    location: 'top',
     inverse: false
 }
 Vue.use(VueProgressBar, options)

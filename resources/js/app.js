@@ -5,7 +5,7 @@ import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import { routes } from './routes_user';
 import StoreData from './store';
-import App from './components/App.vue';
+import App from './components/user/App.vue';
 import VueProgressBar from 'vue-progressbar'
 import { initialize_user } from './helpers/general_user';
 import Loading from 'vue-loading-overlay';
@@ -28,8 +28,9 @@ const store = new Vuex.Store(StoreData);
 
 
 const router = new VueRouter({
-    routes,
     mode: 'history',
+    linkExactActiveClass: 'active',
+    routes,
     scrollBehavior: (to, from, savedPosition) =>{
         if (savedPosition){
             return savedPosition;
@@ -44,7 +45,7 @@ const router = new VueRouter({
 });
 
 const options = {
-    color: '#bffaf3',
+    color: '#238238',
     failedColor: '#874b4b',
     thickness: '5px',
     transition: {
@@ -53,7 +54,7 @@ const options = {
         termination: 300
     },
     autoRevert: true,
-    location: 'left',
+    location: 'top',
     inverse: false
 }
 Vue.use(VueProgressBar, options)

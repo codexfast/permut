@@ -1,10 +1,10 @@
-import Index from './components/user/index.vue';
-import Register from './components/user/auth/Register.vue';
-import Login from './components/user/auth/Login.vue';
-import Recover from './components/user/auth/Recover.vue';
-import ResetPassword from './components/user/auth/ResetPassword.vue';
-import VerifyEmail from './components/user/auth/VerifyEmail.vue';
-import NotFound from './components/NotFound.vue';
+import Index from './components/user/pages/index.vue';
+import Register from './components/user/pages/auth/Register.vue';
+import Login from './components/user/pages/auth/Login.vue';
+import Recover from './components/user/pages/auth/Recover.vue';
+import ResetPassword from './components/user/pages/auth/ResetPassword.vue';
+import VerifyEmail from './components/user/pages/auth/VerifyEmail.vue';
+import NotFound from './components/user/pages/NotFound.vue';
 
 
 

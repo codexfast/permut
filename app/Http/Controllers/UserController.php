@@ -76,17 +76,17 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['message' => 'E-mail, número de telefone ou senha errada.', 'success'=>false], 400);
+                return response()->json(['message' => 'E-mail, número de telefone ou senha errada.', 'success'=>false]);
             }
         } catch (JWTException $e) {
             return response()->json(['message' => 'Não foi possivel criar um token', 'success'=>false], 500);
         }
         $user = User::where('email', $request->email)->first();
-        if (!$user->email_verified_at){
-            return response()->json(['message' => 'Verifique a sua caixa de entrada de e-mail para activar a sua conta', 'success'=>false], 400);
+        if ($user->email_verified_at == null){
+            return response()->json(['message' => 'Verifique a sua caixa de entrada de e-mail para activar a sua conta', 'success'=>false]);
         }
-        if (!$user->type == 1){
-            return response()->json(['message' => 'Está conta não pode iniciar a sessão neste módulo.', 'success'=>false], 400);
+        if ($user->type != 0){
+            return response()->json(['message' => 'Está conta não pode iniciar a sessão neste módulo.', 'success'=>false]);
         }
         else {
             return response()->json(['message'=> 'Login efectuado com sucesso', 'success'=> true, 'token'=>$token, 'user'=>$user]);
@@ -112,7 +112,7 @@ class UserController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json([$validator->errors(), 'success' => false], 400);
+            return response()->json([$validator->errors(), 'success' => false]);
         }
 
         $user = User::create([
@@ -128,7 +128,7 @@ class UserController extends Controller
         ]);
         event(new Registered($user));
         $token = JWTAuth::fromUser($user);
-        return response()->json(['message'=> 'Conta criada com sucesso.', 'success'=> true, 'token'=>$token, 'user'=>$user], 201);
+        return response()->json(['message'=> 'Conta criada com sucesso. Verifique o seu e-mail para activação da sua conta.', 'success'=> true, 'token'=>$token, 'user'=>$user], 201);
 
     }
 
@@ -139,7 +139,7 @@ class UserController extends Controller
         }
         try {
             Password::sendResetLink($request->only('email'), function (Message $message) {
-                $message->subject('Foi enviado o link de recuperação');
+                $message->subject('Recuperação da conta');
             });
         } catch (\Exception $e) {
             //Return with error
@@ -147,7 +147,7 @@ class UserController extends Controller
             return response()->json(['success' => false, 'message' => $error_message], 401);
         }
         return response()->json([
-            'success' => true, 'message'=> 'Foi enviado um link de recuperação de conta no seu e-mail.'
+            'success' => true, 'message'=> 'Foi enviado um link de recuperação da conta para '.$request->email
         ]);
     }
     public function update(Request $request){
