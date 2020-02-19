@@ -5,6 +5,8 @@ import Recover from './components/user/pages/auth/Recover.vue';
 import ResetPassword from './components/user/pages/auth/ResetPassword.vue';
 import VerifyEmail from './components/user/pages/auth/VerifyEmail.vue';
 import NotFound from './components/user/pages/NotFound.vue';
+import CheckPayment from './components/user/pages/CheckPayment.vue';
+
 
 
 
@@ -129,7 +131,26 @@ export const routes = [
             progress
         }
     },
-
+    {
+        path: '/mercadopago/callback',
+        component: CheckPayment,
+        meta: {
+            requiresAuth: true,
+            title: PageName + ' - Verificando o pagamento',
+            metaTags: [
+                ...metaHelper,
+                {
+                    property: 'og:title',
+                    content: PageName + ' - Verificando o pagamento',
+                },
+                {
+                    name: 'twitter:title',
+                    content: PageName + ' - Verificando o pagamento',
+                },
+            ],
+            progress
+        }
+    },
 
     {
         path: '/404',

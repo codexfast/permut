@@ -1763,6 +1763,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1808,13 +1810,102 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
+    premium: function premium() {
+      var loader = this.$loading.show({
+        // Optional parameters
+        container: this.fullPage ? null : this.$refs.formContainer,
+        canCancel: false,
+        loader: "dots",
+        color: "#238238"
+      });
+      axios.get("/user/premium").then(function (response) {
+        if (!response.data.success) {
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire("Erro!", response.data.message, "error");
+        } else if (response.data.url) {
+          window.location.href = response.data.url;
+        }
+      })["catch"](function (err) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire("Erro!", "Falha ao realizar a operação", "error");
+      })["finally"](function () {
+        loader.hide();
+      });
+    },
     logout: function logout() {
       this.$store.commit("logoutUser");
       this.$router.push("/login");
     }
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/user/pages/CheckPayment.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/user/pages/CheckPayment.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {},
+  mounted: function mounted() {
+    this.check();
+  },
+  data: function data() {
+    return {};
+  },
+  methods: {
+    check: function check() {
+      var _this = this;
+
+      var loader = this.$loading.show({
+        // Optional parameters
+        container: this.fullPage ? null : this.$refs.formContainer,
+        canCancel: false,
+        loader: "dots",
+        color: "#238238"
+      });
+      axios.get("/mercadopago/callback/" + window.location.search.replace("?", "")).then(function (response) {
+        if (response.data.success) {
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire("Sucesso!", response.data.message, "success");
+
+          _this.$router.push({
+            path: "/profile"
+          });
+        } else {
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire("Erro!", response.data.message, "error");
+        }
+      })["catch"](function (err) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire("Erro!", "Falha ao realizar a operação", "error");
+      })["finally"](function () {
+        loader.hide();
+      });
+    }
+  },
+  computed: {}
 });
 
 /***/ }),
@@ -1913,7 +2004,7 @@ __webpack_require__.r(__webpack_exports__);
         container: this.fullPage ? null : this.$refs.formContainer,
         canCancel: false,
         loader: "dots",
-        color: "#007bff"
+        color: "#238238"
       });
       axios.post("/user/login", this.form).then(function (response) {
         if (response.data.success) {
@@ -2007,7 +2098,7 @@ __webpack_require__.r(__webpack_exports__);
         container: this.fullPage ? null : this.$refs.formContainer,
         canCancel: false,
         loader: "dots",
-        color: "#007bff"
+        color: "#238238"
       });
       axios.post("/user/reset-password", this.form).then(function (response) {
         if (response.data.success) {
@@ -2136,7 +2227,7 @@ __webpack_require__.r(__webpack_exports__);
         container: this.fullPage ? null : this.$refs.formContainer,
         canCancel: false,
         loader: "dots",
-        color: "#007bff"
+        color: "#238238"
       });
       axios.post("/user/register", this.form).then(function (response) {
         if (response.data.success) {
@@ -51306,18 +51397,22 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: "/payment" } },
-                  [_vm._v("Premium")]
-                )
-              ],
-              1
-            )
+            _c("li", { staticClass: "nav-item" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.premium($event)
+                    }
+                  }
+                },
+                [_vm._v("Premium")]
+              )
+            ])
           ]),
           _vm._v(" "),
           _c(
@@ -51376,6 +51471,64 @@ var staticRenderFns = [
       _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
         _c("i", { staticClass: "fas fa-bell" })
       ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/user/pages/CheckPayment.vue?vue&type=template&id=455cce32&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/user/pages/CheckPayment.vue?vue&type=template&id=455cce32&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container-fluid height-full" }, [
+      _c(
+        "div",
+        {
+          staticClass: "row justify-content-center align-items-center h-100",
+          staticStyle: { background: "#fff" }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "text-white container justify-content-center",
+              staticStyle: { width: "32em" }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "alert alert-success",
+                  attrs: { role: "alert" }
+                },
+                [_vm._v("Processando...")]
+              )
+            ]
+          )
+        ]
+      )
     ])
   }
 ]
@@ -68480,6 +68633,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/user/pages/CheckPayment.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/user/pages/CheckPayment.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CheckPayment_vue_vue_type_template_id_455cce32_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CheckPayment.vue?vue&type=template&id=455cce32&scoped=true& */ "./resources/js/components/user/pages/CheckPayment.vue?vue&type=template&id=455cce32&scoped=true&");
+/* harmony import */ var _CheckPayment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckPayment.vue?vue&type=script&lang=js& */ "./resources/js/components/user/pages/CheckPayment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CheckPayment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CheckPayment_vue_vue_type_template_id_455cce32_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CheckPayment_vue_vue_type_template_id_455cce32_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "455cce32",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/user/pages/CheckPayment.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/user/pages/CheckPayment.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/user/pages/CheckPayment.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckPayment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckPayment.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/user/pages/CheckPayment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckPayment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/user/pages/CheckPayment.vue?vue&type=template&id=455cce32&scoped=true&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/user/pages/CheckPayment.vue?vue&type=template&id=455cce32&scoped=true& ***!
+  \********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckPayment_vue_vue_type_template_id_455cce32_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckPayment.vue?vue&type=template&id=455cce32&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/user/pages/CheckPayment.vue?vue&type=template&id=455cce32&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckPayment_vue_vue_type_template_id_455cce32_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckPayment_vue_vue_type_template_id_455cce32_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/user/pages/NotFound.vue":
 /*!*********************************************************!*\
   !*** ./resources/js/components/user/pages/NotFound.vue ***!
@@ -69106,6 +69328,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_user_pages_auth_ResetPassword_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/user/pages/auth/ResetPassword.vue */ "./resources/js/components/user/pages/auth/ResetPassword.vue");
 /* harmony import */ var _components_user_pages_auth_VerifyEmail_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/user/pages/auth/VerifyEmail.vue */ "./resources/js/components/user/pages/auth/VerifyEmail.vue");
 /* harmony import */ var _components_user_pages_NotFound_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/user/pages/NotFound.vue */ "./resources/js/components/user/pages/NotFound.vue");
+/* harmony import */ var _components_user_pages_CheckPayment_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/user/pages/CheckPayment.vue */ "./resources/js/components/user/pages/CheckPayment.vue");
+
 
 
 
@@ -69217,6 +69441,21 @@ var routes = [{
     }, {
       name: 'twitter:title',
       content: PageName + ' - ' + MainTitle
+    }]),
+    progress: progress
+  }
+}, {
+  path: '/mercadopago/callback',
+  component: _components_user_pages_CheckPayment_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+  meta: {
+    requiresAuth: true,
+    title: PageName + ' - Verificando o pagamento',
+    metaTags: [].concat(metaHelper, [{
+      property: 'og:title',
+      content: PageName + ' - Verificando o pagamento'
+    }, {
+      name: 'twitter:title',
+      content: PageName + ' - Verificando o pagamento'
     }]),
     progress: progress
   }

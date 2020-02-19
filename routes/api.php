@@ -46,6 +46,8 @@ Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'user'], function(){
     Route::put('permut-update', 'PermutController@update');
 
     Route::get('payments', 'PaymentController@get');
+    Route::get('premium', 'PaymentController@create');
+    Route::get('mercadopago/callback', 'PaymentController@check');
 });
 //user
 

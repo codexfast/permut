@@ -24,7 +24,7 @@
           <router-link to="/search" class="nav-link">Pesquisar</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/payment" class="nav-link">Premium</router-link>
+          <a href="#" @click.prevent="premium" class="nav-link">Premium</a>
         </li>
       </ul>
       <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
@@ -44,8 +44,33 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 export default {
   methods: {
+    premium() {
+      let loader = this.$loading.show({
+        // Optional parameters
+        container: this.fullPage ? null : this.$refs.formContainer,
+        canCancel: false,
+        loader: "dots",
+        color: "#238238"
+      });
+      axios
+        .get(`/user/premium`)
+        .then(response => {
+          if (!response.data.success) {
+            Swal.fire("Erro!", response.data.message, "error");
+          } else if (response.data.url) {
+            window.location.href = response.data.url;
+          }
+        })
+        .catch(err => {
+          Swal.fire("Erro!", "Falha ao realizar a operação", "error");
+        })
+        .finally(() => {
+          loader.hide();
+        });
+    },
     logout() {
       this.$store.commit("logoutUser");
       this.$router.push("/login");

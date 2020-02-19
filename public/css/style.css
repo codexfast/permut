@@ -10,6 +10,12 @@ body i {
   font-family:'FontAwesome'!important;
   font-style: inherit;
   }
+body.swal2-height-auto {
+    height: 100%!important;
+}
+.vld-overlay.is-full-page {
+  z-index: 1051 !important;
+}
 /**/
 
 html,
