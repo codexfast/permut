@@ -1907,7 +1907,7 @@ __webpack_require__.r(__webpack_exports__);
         container: this.fullPage ? null : this.$refs.formContainer,
         canCancel: false,
         loader: "dots",
-        color: "#007bff"
+        color: "#631b77"
       });
       axios.post("/admin/login", this.form).then(function (response) {
         if (response.data.success) {
@@ -2000,7 +2000,7 @@ __webpack_require__.r(__webpack_exports__);
         container: this.fullPage ? null : this.$refs.formContainer,
         canCancel: false,
         loader: "dots",
-        color: "#007bff"
+        color: "#631b77"
       });
       axios.post("/admin/reset-password", this.form).then(function (response) {
         if (response.data.success) {

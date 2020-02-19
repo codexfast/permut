@@ -62,7 +62,7 @@ export default {
         container: this.fullPage ? null : this.$refs.formContainer,
         canCancel: false,
         loader: "dots",
-        color: "#007bff"
+        color: "#238238"
       });
       axios
         .post("/user/login", this.form)

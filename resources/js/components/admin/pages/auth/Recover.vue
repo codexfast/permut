@@ -49,7 +49,7 @@ export default {
         container: this.fullPage ? null : this.$refs.formContainer,
         canCancel: false,
         loader: "dots",
-        color: "#007bff"
+        color: "#631b77"
       });
       axios
         .post("/admin/reset-password", this.form)

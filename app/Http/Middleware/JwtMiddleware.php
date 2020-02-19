@@ -20,6 +20,9 @@ class JwtMiddleware
     {
         try {
             $user = JWTAuth::parseToken()->authenticate();
+            if ($user->type != 0){
+                return response()->json(['success'=>false,'message'=>'Você não tem permissão para acessar este módulo.']);
+            }
         } catch (Exception $e){
             if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
                 return response()->json(['success'=>false,'message'=>'Token inválido.']);
