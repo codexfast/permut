@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div class="w-100 h-100" id="app">
       <app/>
     </div>
     <script src="{{asset('/js/app.js')}}"></script>

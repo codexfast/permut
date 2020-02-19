@@ -1,22 +1,15 @@
 <template>
-  <div id="main">
-    <Header />
-    <div class="content">
-      <router-view></router-view>
-      <vue-progress-bar></vue-progress-bar>
-    </div>
+  <div class="w-100 h-100">
+    <vue-progress-bar></vue-progress-bar>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Header from "./Header.vue";
-
 export default {
   name: "app",
-  components: { Header },
   mounted() {
     this.$Progress.finish();
-     
   },
   created() {
     this.$Progress.start();

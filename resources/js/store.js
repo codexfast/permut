@@ -1,5 +1,4 @@
 import { getLocalUser, getLocalAdmin } from "./helpers/auth";
-
 const user = getLocalUser();
 const admin = getLocalAdmin();
 
@@ -15,8 +14,6 @@ export default {
         currentAdmin(state) {
             return state.currentAdmin;
         },
-
-
     },
     mutations: {
         loginUserSuccess(state, payload) {
@@ -31,13 +28,34 @@ export default {
             state.currentAdmin = Object.assign({}, payload.admin, { token: payload.token });
             localStorage.setItem("admin", JSON.stringify(state.currentAdmin));
         },
-        logoutUser(state) {
+        logoutAdmin(state) {
             localStorage.removeItem("admin");
             state.currentAdmin = null;
         },
+        updateUser(state, payload) {
+            state.currentUser = Object.assign({}, payload.data, { token: state.currentUser.token });
+            localStorage.setItem("user", JSON.stringify(state.currentUser));
+        },
+        updateAdmin(state, payload) {
+            state.currentAdmin = Object.assign({}, payload.data, { token: state.currentAdmin });
+            localStorage.setItem("admin", JSON.stringify(state.currentAdmin));
+        }
 
     },
     actions: {
-        
+        fetchUser(context) {
+            axios.get('/user/profile')
+                .then((response) => {
+                    if (response.data.success)
+                        context.commit('updateUser', response.data);
+                })
+        },
+        fetchAdmin(context) {
+            axios.get('/admin/profile')
+                .then((response) => {
+                    if (response.data.success)
+                        context.commit('updateAdmin', response.data);
+                })
+        },
     }
 };

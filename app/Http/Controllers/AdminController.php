@@ -76,17 +76,17 @@ class AdminController extends Controller
         $credentials = $request->only('email', 'password');
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['message' => 'E-mail, número de telefone ou senha errada.', 'success'=>false], 400);
+                return response()->json(['message' => 'E-mail ou senha errada.', 'success'=>false]);
             }
         } catch (JWTException $e) {
             return response()->json(['message' => 'Não foi possivel criar um token', 'success'=>false], 500);
         }
         $user = User::where('email', $request->email)->first();
-        if (!$user->email_verified_at){
-            return response()->json(['message' => 'Verifique a sua caixa de entrada de e-mail para activar a sua conta', 'success'=>false], 400);
+        if ($user->email_verified_at == null){
+            return response()->json(['message' => 'Verifique a sua caixa de entrada de e-mail para activar a sua conta', 'success'=>false]);
         }
-        if (!$user->type == 1){
-            return response()->json(['message' => 'Está conta não pode iniciar a sessão neste módulo.', 'success'=>false], 400);
+        if ($user->type != 1){
+            return response()->json(['message' => 'Está conta não pode iniciar a sessão neste módulo.', 'success'=>false]);
         }
         else {
             return response()->json(['message'=> 'Login efectuado com sucesso', 'success'=> true, 'token'=>$token, 'user'=>$user]);
