@@ -37,7 +37,7 @@
         <input
           type="tel"
           id="phone"
-          pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$"
+          pattern="[0-9]+"
           class="form-control"
           placeholder="Whatsapp"
           required

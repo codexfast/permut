@@ -1927,7 +1927,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     currentUser: function currentUser() {
-      console.log(this.$store.getters.currentUser);
+      console.log(this.$store);
       return this.$store.getters.currentUser;
     }
   }
@@ -52488,7 +52488,7 @@ var render = function() {
               attrs: {
                 type: "tel",
                 id: "phone",
-                pattern: "\\([0-9]{2}\\) [0-9]{4,6}-[0-9]{3,4}$",
+                pattern: "[0-9]+",
                 placeholder: "Whatsapp",
                 required: "",
                 autofocus: ""
@@ -70290,7 +70290,7 @@ var FacebookURL = 'https://www.facebook.com/permut';
 var MainImage = 'http://' + location.host + '/img/placeholder_image.png';
 var MainTitle = 'Default';
 var MainKeys = 'Permutas';
-var MainColor = "#52D18D";
+var MainColor = "#343a40";
 var MainDescription = 'Default';
 var MainUserName = "@permut";
 var MainLocale = "pt_BR";
