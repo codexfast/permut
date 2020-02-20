@@ -1,23 +1,22 @@
 <template>
   <div>
-    <Header />
-    <div v-if="currentUser">{{currentUser.name}}</div>
+    <Navbar />
+    <Main />
   </div>
 </template>
 
 <script>
-import Header from "../Header.vue";
+
+import Navbar from "../Navbar.vue";
+import Main from "../Main.vue";
+
 export default {
-  components: { Header },
+  components: { Navbar, Main },
 
   mounted() {
     this.$store.dispatch("fetchUser");
   },
   methods: {},
-  computed: {
-    currentUser() {
-      return this.$store.getters.currentUser;
-    }
-  }
+  
 };
 </script>
