@@ -132,7 +132,7 @@ export const routes = [
         }
     },
     {
-        path: '/mercadopago/callback',
+        path: '/mercadopago',
         component: CheckPayment,
         meta: {
             requiresAuth: true,

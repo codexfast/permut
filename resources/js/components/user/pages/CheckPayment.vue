@@ -1,12 +1,9 @@
 <template>
-  <div class="container-fluid height-full">
-    <div
-      class="row justify-content-center align-items-center h-100"
-      style="
-    background: #fff;
-"
-    >
-      <div style="width: 32em;" class="text-white container justify-content-center">
+  <div>
+    <Header />
+
+    <div class="d-flex justify-content-center align-items-center" style="height: 80vh; width: 100%">
+      <div style="width: 22em;" class="text-white">
         <div class="alert alert-success" role="alert">Processando...</div>
       </div>
     </div>
@@ -15,8 +12,9 @@
 
 <script>
 import Swal from "sweetalert2";
+import Header from "../Header.vue";
 export default {
-  components: {},
+  components: { Header },
   mounted() {
     this.check();
   },
@@ -34,16 +32,18 @@ export default {
         color: "#238238"
       });
       axios
-        .get("/mercadopago/callback/" + window.location.search.replace("?", ""))
+        .get("/user/mercadopago/?" + window.location.search.replace("?", ""))
         .then(response => {
           if (response.data.success) {
             Swal.fire("Sucesso!", response.data.message, "success");
             this.$router.push({ path: "/profile" });
           } else {
+            this.$router.push({ path: "/" });
             Swal.fire("Erro!", response.data.message, "error");
           }
         })
         .catch(err => {
+          this.$router.push({ path: "/" });
           Swal.fire("Erro!", "Falha ao realizar a operação", "error");
         })
         .finally(() => {

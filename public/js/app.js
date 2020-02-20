@@ -1812,6 +1812,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.$store.dispatch("fetchUser");
+  },
   methods: {
     premium: function premium() {
       var loader = this.$loading.show({
@@ -1837,6 +1840,11 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.commit("logoutUser");
       this.$router.push("/login");
     }
+  },
+  computed: {
+    currentUser: function currentUser() {
+      return this.$store.getters.currentUser;
+    }
   }
 });
 
@@ -1853,9 +1861,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
+/* harmony import */ var _Header_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Header.vue */ "./resources/js/components/user/Header.vue");
 //
 //
 //
@@ -1869,8 +1875,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {},
+  components: {
+    Header: _Header_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   mounted: function mounted() {
     this.check();
   },
@@ -1888,7 +1897,7 @@ __webpack_require__.r(__webpack_exports__);
         loader: "dots",
         color: "#238238"
       });
-      axios.get("/mercadopago/callback/" + window.location.search.replace("?", "")).then(function (response) {
+      axios.get("/user/mercadopago/?" + window.location.search.replace("?", "")).then(function (response) {
         if (response.data.success) {
           sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire("Sucesso!", response.data.message, "success");
 
@@ -1896,9 +1905,17 @@ __webpack_require__.r(__webpack_exports__);
             path: "/profile"
           });
         } else {
+          _this.$router.push({
+            path: "/"
+          });
+
           sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire("Erro!", response.data.message, "error");
         }
       })["catch"](function (err) {
+        _this.$router.push({
+          path: "/"
+        });
+
         sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire("Erro!", "Falha ao realizar a operação", "error");
       })["finally"](function () {
         loader.hide();
@@ -51397,22 +51414,24 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link",
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.premium($event)
-                    }
-                  }
-                },
-                [_vm._v("Premium")]
-              )
-            ])
+            _vm.currentUser.licensed != 1
+              ? _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.premium($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Premium")]
+                  )
+                ])
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c(
@@ -51495,41 +51514,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [_c("Header"), _vm._v(" "), _vm._m(0)], 1)
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container-fluid height-full" }, [
-      _c(
-        "div",
-        {
-          staticClass: "row justify-content-center align-items-center h-100",
-          staticStyle: { background: "#fff" }
-        },
-        [
-          _c(
-            "div",
-            {
-              staticClass: "text-white container justify-content-center",
-              staticStyle: { width: "32em" }
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "alert alert-success",
-                  attrs: { role: "alert" }
-                },
-                [_vm._v("Processando...")]
-              )
-            ]
-          )
-        ]
-      )
-    ])
+    return _c(
+      "div",
+      {
+        staticClass: "d-flex justify-content-center align-items-center",
+        staticStyle: { height: "80vh", width: "100%" }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "text-white", staticStyle: { width: "22em" } },
+          [
+            _c(
+              "div",
+              { staticClass: "alert alert-success", attrs: { role: "alert" } },
+              [_vm._v("Processando...")]
+            )
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -69445,7 +69456,7 @@ var routes = [{
     progress: progress
   }
 }, {
-  path: '/mercadopago/callback',
+  path: '/mercadopago',
   component: _components_user_pages_CheckPayment_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
   meta: {
     requiresAuth: true,
