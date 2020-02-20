@@ -55,7 +55,11 @@
     
           <div class="tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">...</div>
           <div class="tab-pane fade" id="pills-search" role="tabpanel" aria-labelledby="pills-search">...</div>
-          <div class="tab-pane fade" id="pills-settings" role="tabpanel" aria-labelledby="pills-settings-tab">...</div>
+          <div class="tab-pane fade" id="pills-settings" role="tabpanel" aria-labelledby="pills-settings-tab">
+            <div class="container">
+              <SectionCard title="Informações de Usuário" faIcon="fa fa-user mr-1"/>
+            </div>
+          </div>
           
           </div>
         </div>
@@ -69,17 +73,19 @@
 import License from "./sub-components/License.vue";
 import CommonCard from "./sub-components/CommonCard.vue";
 import Banner from "./sub-components/Banner.vue";
+import SectionCard from "./sub-components/SectionCard.vue";
 
 export default {
   components: { 
     License, 
     CommonCard,
+    SectionCard,
     Banner,
   },
   
   computed: {
     currentUser() {
-      console.log(this.$store)
+      
       return this.$store.getters.currentUser;
     },
   }
