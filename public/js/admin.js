@@ -51291,8 +51291,7 @@ var render = function() {
             _c("img", {
               staticClass: "mb-4",
               attrs: {
-                src:
-                  "https://getbootstrap.com//docs/4.4/assets/brand/bootstrap-solid.svg",
+                src: "/img/admin-icon.png",
                 alt: "",
                 width: "72",
                 height: "72"
@@ -51300,7 +51299,7 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("h1", { staticClass: "h3 mb-3 font-weight-normal" }, [
-              _vm._v("Área de Login")
+              _vm._v("Área Admin")
             ]),
             _vm._v(" "),
             _c(
@@ -68592,8 +68591,8 @@ function setAuthorizationAdmin(token) {
   axios.defaults.headers.common["Authorization"] = "Bearer ".concat(token);
   window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
     broadcaster: 'pusher',
-    key: "80b3f61dbf472916abed",
-    cluster: "ap2",
+    key: "",
+    cluster: "mt1",
     encrypted: true,
     host: location.host,
     csrfToken: csrf_token.content,
@@ -68904,7 +68903,7 @@ var admin = Object(_helpers_auth__WEBPACK_IMPORTED_MODULE_0__["getLocalAdmin"])(
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Repositories\Begrand\permut\resources\js\admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! C:\Users\User\Desktop\Dev\PHP\laravel\permut\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })

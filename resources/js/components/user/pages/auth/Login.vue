@@ -4,7 +4,8 @@
       <form class="form-signin text-center" @submit.prevent="authenticate">
         <img
           class="mb-4"
-          src="https://getbootstrap.com//docs/4.4/assets/brand/bootstrap-solid.svg"
+          src="/img/client-icon.png"
+
           alt
           width="72"
           height="72"

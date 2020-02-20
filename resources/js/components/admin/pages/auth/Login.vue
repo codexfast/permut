@@ -4,12 +4,12 @@
       <form class="form-signin text-center" @submit.prevent="authenticate">
         <img
           class="mb-4"
-          src="https://getbootstrap.com//docs/4.4/assets/brand/bootstrap-solid.svg"
+          src="/img/admin-icon.png"
           alt
           width="72"
           height="72"
         />
-        <h1 class="h3 mb-3 font-weight-normal">Área de Login</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Área Admin</h1>
 
         <label for="inputEmail" class="sr-only">E-mail</label>
         <input

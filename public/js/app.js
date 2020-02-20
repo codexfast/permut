@@ -1982,6 +1982,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -51597,8 +51598,7 @@ var render = function() {
             _c("img", {
               staticClass: "mb-4",
               attrs: {
-                src:
-                  "https://getbootstrap.com//docs/4.4/assets/brand/bootstrap-solid.svg",
+                src: "/img/client-icon.png",
                 alt: "",
                 width: "72",
                 height: "72"
@@ -69295,8 +69295,8 @@ function setAuthorizationUser(token) {
   axios.defaults.headers.common["Authorization"] = "Bearer ".concat(token);
   window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
     broadcaster: 'pusher',
-    key: "80b3f61dbf472916abed",
-    cluster: "ap2",
+    key: "",
+    cluster: "mt1",
     encrypted: true,
     host: location.host,
     csrfToken: csrf_token.content,
@@ -69651,8 +69651,8 @@ var admin = Object(_helpers_auth__WEBPACK_IMPORTED_MODULE_0__["getLocalAdmin"])(
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Repositories\Begrand\permut\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Repositories\Begrand\permut\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\User\Desktop\Dev\PHP\laravel\permut\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\User\Desktop\Dev\PHP\laravel\permut\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
