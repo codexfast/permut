@@ -1980,6 +1980,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "login",
@@ -51437,8 +51438,7 @@ var render = function() {
             _c("img", {
               staticClass: "mb-4",
               attrs: {
-                src:
-                  "https://getbootstrap.com//docs/4.4/assets/brand/bootstrap-solid.svg",
+                src: "/img/admin-icon.png",
                 alt: "",
                 width: "72",
                 height: "72"
