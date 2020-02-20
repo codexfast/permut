@@ -24,7 +24,7 @@
           <div class="tab-pane fade show active" id="pills-dashboard" role="tabpanel" aria-labelledby="pills-dashboard-tab">
             <!-- Compass Content -->
               <div class="container">
-                <div class="row mb-4">
+                <div class="row mb-4" v-if="currentUser.licensed!=1">
                   <div class="col">
                       <License />
                   </div>
@@ -32,21 +32,23 @@
 
                 <div class="row">
                   <div class="col-sm-12 col-md-4 col-lg-4">
-                    <InterestCard title="Interesse" city="Santa Branca" position="Advogado" state="São Paulo"/>
+                    <CommonCard title="Interesse" bottom="Santa Branca" middle="Advogado" top="São Paulo" faIcon="fa fa-4x fa-plane"/>
                   </div>
                   <div class="col-sm-12 col-md-4 col-lg-4">
-                    <InterestCard title="Atual" city="Novo Cruzeiro" position="Advogado" state="Minas Gerais"/>
+                    <CommonCard title="Local" bottom="Novo Cruzeiro" middle="Advogado" top="Minas Gerais" faIcon="fa fa-4x fa-plane"/>
                   </div>
-      
+                  <div class="col-sm-12 col-md-4 col-lg-4">
+                    <CommonCard title="Saldo de Pesquisas" bottom="Clique aqui para comprar" middle="Pesquisas Restantes" top="13" fa-icon="fa fa-4x fa-search" to="/buy-surveys"/>
+                  </div>
                 </div>
 
               </div>
-          </div>
-          
             <!-- End Compass Content -->
           </div>
+    
           <div class="tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">...</div>
           <div class="tab-pane fade" id="pills-settings" role="tabpanel" aria-labelledby="pills-settings-tab">...</div>
+          </div>
         </div>
 
       </div>
@@ -56,15 +58,16 @@
 <script>
 
 import License from "./sub-components/License.vue";
-import InterestCard from "./sub-components/InterestCard.vue";
+import CommonCard from "./sub-components/CommonCard.vue";
 
 export default {
-  components: { License , InterestCard },
+  components: { License , CommonCard },
   
   computed: {
     currentUser() {
+      console.log(this.$store.getters.currentUser)
       return this.$store.getters.currentUser;
-    }
+    },
   }
 };
 </script>
