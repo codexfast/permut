@@ -18,6 +18,8 @@ Route::get('cities', 'LocationController@getCities');
 Route::get('states', 'LocationController@getStates');
 Route::get('positions', 'PositionController@get');
 Route::get('institutions', 'InstitutionController@get');
+Route::get('payment-notify', 'PaymentController@check');
+
 //both
 
 //user
@@ -47,7 +49,7 @@ Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'user'], function(){
 
     Route::get('payments', 'PaymentController@get');
     Route::get('premium', 'PaymentController@create');
-    Route::get('mercadopago/callback', 'PaymentController@check');
+    Route::get('mercadopago', 'PaymentController@check');
 });
 //user
 

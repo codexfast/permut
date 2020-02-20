@@ -23,7 +23,7 @@
         <li class="nav-item">
           <router-link to="/search" class="nav-link">Pesquisar</router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" v-if="currentUser.licensed!=1">
           <a href="#" @click.prevent="premium" class="nav-link">Premium</a>
         </li>
       </ul>
@@ -46,6 +46,9 @@
 <script>
 import Swal from "sweetalert2";
 export default {
+  mounted() {
+    this.$store.dispatch("fetchUser");
+  },
   methods: {
     premium() {
       let loader = this.$loading.show({
@@ -74,6 +77,11 @@ export default {
     logout() {
       this.$store.commit("logoutUser");
       this.$router.push("/login");
+    }
+  },
+  computed: {
+    currentUser() {
+      return this.$store.getters.currentUser;
     }
   }
 };

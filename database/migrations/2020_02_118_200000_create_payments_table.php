@@ -16,6 +16,7 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('via');
+            $table->string('reference')->unique();
             $table->enum('status', [ 1, 0]);
             $table->decimal('amount');
             $table->bigInteger('user_id')->unsigned()->nullable();
