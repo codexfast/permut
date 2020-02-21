@@ -6,6 +6,7 @@ import ResetPassword from './components/user/pages/auth/ResetPassword.vue';
 import VerifyEmail from './components/user/pages/auth/VerifyEmail.vue';
 import NotFound from './components/user/pages/NotFound.vue';
 import CheckPayment from './components/user/pages/CheckPayment.vue';
+import Messages from './components/user/pages/Messages.vue';
 
 
 
@@ -126,6 +127,26 @@ export const routes = [
                 {
                     name: 'twitter:title',
                     content: PageName + ' - ' + MainTitle,
+                },
+            ],
+            progress
+        }
+    },
+    {
+        path: '/messages',
+        component: Messages,
+        meta: {
+            requiresAuth: true,
+            title: PageName + ' - Mensagens',
+            metaTags: [
+                ...metaHelper,
+                {
+                    property: 'og:title',
+                    content:  PageName + ' - Mensagens',
+                },
+                {
+                    name: 'twitter:title',
+                    content:  PageName + ' - Mensagens',
                 },
             ],
             progress

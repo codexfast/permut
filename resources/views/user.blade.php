@@ -11,8 +11,8 @@
 
   <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('css/client.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/favicon.png') }}">
 </head>
 
@@ -20,6 +20,10 @@
     <div class="w-100 h-100" id="app">
       <app/>
     </div>
+    <script src="{{asset('/js/jquery.min.js')}}"></script>
+    <script src="{{asset('/js/popper.min.js')}}"></script>
+    <script src="{{asset('/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('/js/app.js')}}"></script>
+
 </body>
 </html>

@@ -40,7 +40,8 @@ Route::group(['middleware' => ['jwt.verify'], 'prefix' => 'user'], function(){
     Route::put('update-password', 'UserController@updatePassword');
 
     Route::get('search', 'SearchController@index');
-    Route::get('messages', 'MessageController@get');
+    Route::get('messages/{id}', 'MessageController@get');
+    Route::get('conversations', 'MessageController@conversations');
     Route::post('message-create', 'MessageController@create');
 
     Route::get('permuts', 'PermutController@get');
