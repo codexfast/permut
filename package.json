@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "@inotom/vue-go-top": "^1.1.0",
+        "bs-custom-file-input": "^1.3.4",
         "crip-vue-notice": "^1.1.1",
         "glob-all": "^3.1.0",
         "laravel-echo": "^1.6.1",
@@ -33,6 +34,7 @@
         "pusher-js": "^5.0.3",
         "sweetalert2": "^9.7.2",
         "validate.js": "^0.13.1",
+        "vue-fullscreen": "^2.1.5",
         "vue-infinite-loading": "^2.4.4",
         "vue-loading-overlay": "^3.2.0",
         "vue-meta": "^2.3.1",

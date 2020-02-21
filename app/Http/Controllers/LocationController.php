@@ -58,6 +58,23 @@
             $states = State::orderBy('state')->get();
             return response()->json(['message' => "Operação realizada com sucesso.", 'cities' => $cities,   'states'=> $states, 'success' => true]);
         }
+
+        public function getCitiesByState($state_id){
+
+
+            // Coming Soon Working
+
+            $cities = City::
+                join('states', 'states.id','cities.state_id' )
+                ->select('cities.*', 'states.state',
+                    DB::raw('(SELECT COUNT(*) FROM institutions WHERE institutions.city_id = cities.id) as count')
+                        )->orderBy('state')->get();
+
+            $states = State::orderBy('state')->get();
+            
+            return response()->json(['message' => "Operação realizada com sucesso.", 'cities' => $cities,   'states'=> $states, 'success' => true]);
+        }
+
         public function createCity(Request $request) {
             $validator = Validator::make($request->all(), [
                 'city' => 'required|string|max:255|unique:cities',

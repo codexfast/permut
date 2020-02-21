@@ -7,11 +7,13 @@
               <i class="fa fa-compass fa-2x"></i>
             </a>
           </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Menssagens">
-            <a class="nav-link position-relative" id="pills-users-tab" data-toggle="pill" href="#pills-users" role="tab" aria-controls="pills-users" aria-selected="false">
-              <i class="fa fa-paper-plane fa-2x"></i>
-              <span class="badge badge-pill badge-light" style="position: absolute; right:0; top:0;">+9</span>
-            </a>
+          <li class="nav-item">
+            <router-link to="/messages">
+              <a class="nav-link position-relative" href="" role="tab" aria-controls="pills-users" aria-selected="false">
+                <i class="fa fa-paper-plane fa-2x"></i>
+                <span class="badge badge-pill badge-light" style="position: absolute; right:0; top:0;">+9</span>
+              </a>
+            </router-link>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Pesquisar Permuta">
             <a class="nav-link" id="pills-search" data-toggle="pill" href="#pills-search" role="tab" aria-controls="pills-search" aria-selected="false" >
@@ -53,7 +55,6 @@
             <!-- End Compass Content -->
           </div>
     
-          <div class="tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">...</div>
           <div class="tab-pane fade" id="pills-search" role="tabpanel" aria-labelledby="pills-search">...</div>
           <div class="tab-pane fade" id="pills-settings" role="tabpanel" aria-labelledby="pills-settings-tab">
             <div class="container">
@@ -75,12 +76,14 @@ import CommonCard from "./sub-components/CommonCard.vue";
 import Banner from "./sub-components/Banner.vue";
 import SectionCard from "./sub-components/SectionCard.vue";
 
+
 export default {
   components: { 
     License, 
     CommonCard,
     SectionCard,
     Banner,
+
   },
   
   computed: {

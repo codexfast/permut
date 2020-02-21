@@ -39,7 +39,7 @@ export default {
         updateAdmin(state, payload) {
             state.currentAdmin = Object.assign({}, payload.data, { token: state.currentAdmin });
             localStorage.setItem("admin", JSON.stringify(state.currentAdmin));
-        }
+        },
 
     },
     actions: {

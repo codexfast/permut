@@ -15,11 +15,11 @@ use Illuminate\Http\Request;
 
 //both
 Route::get('cities', 'LocationController@getCities');
+Route::get('state/{id}/cities', 'LocationController@getCitiesByState')->where('id', '[0-9]+');
 Route::get('states', 'LocationController@getStates');
 Route::get('positions', 'PositionController@get');
 Route::get('institutions', 'InstitutionController@get');
 Route::get('payment-notify', 'PaymentController@check');
-
 //both
 
 //user
