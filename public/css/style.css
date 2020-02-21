@@ -12,6 +12,7 @@ body i {
   }
 body.swal2-height-auto {
     height: 100%!important;
+    min-height: 100vh;
 }
 .vld-overlay.is-full-page {
   z-index: 1051 !important;
