@@ -18,7 +18,6 @@ use App\Models\Permut;
 
         public $user;
         public $permut;
-        public $message;
 
         /**
          * Create a new event instance.
@@ -28,12 +27,11 @@ use App\Models\Permut;
          * @return void
          */
 
-        public function __construct(User $user, Permut $permut, $message)
+        public function __construct(User $user, Permut $permut)
         {
             //
             $this->user = $user;
             $this->permut = $permut;
-            $this->message = $message;
         }
 
         /**
