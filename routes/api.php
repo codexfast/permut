@@ -18,7 +18,8 @@ Route::get('cities', 'LocationController@getCities');
 Route::get('state/{id}', 'LocationController@getCitiesByState');
 Route::get('states', 'LocationController@getStates');
 Route::get('positions', 'PositionController@get');
-Route::get('institutions', 'InstitutionController@get');
+Route::get('institution', 'InstitutionController@get');
+Route::get('institution/{id}', 'InstitutionController@getInstitutionByCity');
 Route::get('payment-notify', 'PaymentController@check');
 //both
 
