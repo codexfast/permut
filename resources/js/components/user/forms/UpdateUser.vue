@@ -46,6 +46,28 @@
     </div>
 
     <div class="form-group">
+      <!-- Only City on MG -->
+      <label for="citySelect">Instituição</label>
+      <select class="form-control" id="institutionSelect" v-model="user.institution_id" v-on:change="this.getPositions">
+        <option value selected>Selecione a sua instituição</option>
+        <option v-for="(institution, idx) in institutions" :key="idx" v-bind:value="institution.id">{{institution.name}}</option>
+      </select>
+
+      <small id="institutionSelect" class="form-text text-muted">Apenas regiões de Minas Gerais</small>
+    </div>
+
+    <div class="form-group">
+      <!-- Only City on MG -->
+      <label for="citySelect">Cargo</label>
+      <select class="form-control" id="positionSelect" v-model="user.position_id">
+        <option value selected>Selecione a sua instituição</option>
+        <option v-for="(position, idx) in positions" :key="idx" v-bind:value="position.id">{{position.position}}</option>
+      </select>
+
+      <small id="institutionSelect" class="form-text text-muted">Apenas regiões de Minas Gerais</small>
+    </div>
+
+    <div class="form-group">
       <label for="avatar">Avatar</label>
 
       <div class="custom-file">
@@ -73,15 +95,21 @@ export default {
   name: "UpdateUser",
 
   mounted() {
-    this.getCitiesByState();
     this.$store.dispatch("fetchUser");
     bsCustomFileInput.init();
+    
     this.user = this.currentUser;
+
+    this.getCitiesByState();
+    this.getInstitutionByCity(this.user.city_id);
+    this.getPositions();
   },
   data() {
     return {
       user: {},
-      cities: []
+      cities: [],
+      institutions: [],
+      positions: [],
     };
   },
   methods: {
@@ -133,6 +161,36 @@ export default {
         .then(response => {
           if (response.data.success) {
             this.cities = response.data.cities;
+          } else {
+            Swal.fire("Erro!", "Falha ao realizar a operação", "error");
+          }
+        })
+        .catch(err => {
+          Swal.fire("Erro!", "Falha ao realizar a operação", "error");
+        })
+        .finally(() => {});
+    },
+    async getInstitutionByCity(id) {
+      axios
+        .get(`/institution/${id}`)
+        .then(response => {
+          if (response.data.success) {
+            this.institutions = response.data.institutions;
+          } else {
+            Swal.fire("Erro!", "Falha ao realizar a operação", "error");
+          }
+        })
+        .catch(err => {
+          Swal.fire("Erro!", "Falha ao realizar a operação", "error");
+        })
+        .finally(() => {});
+    },
+    async getPositions(id) {
+      axios
+        .get(`/positions/`)
+        .then(response => {
+          if (response.data.success) {
+            this.positions = response.data.positions;
           } else {
             Swal.fire("Erro!", "Falha ao realizar a operação", "error");
           }

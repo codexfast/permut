@@ -63,6 +63,9 @@
               <SectionCard title="Informações de Usuário" faIcon="fa fa-user mr-1">
                 <UpdateUser />
               </SectionCard>
+              <SectionCard title="Interrese" faIcon="fa fa-id-card mr-1" class="my-3">
+
+              </SectionCard>
             </div>
           </div>
           
