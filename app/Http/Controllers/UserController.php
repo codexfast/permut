@@ -203,6 +203,7 @@ class UserController extends Controller
                 }
             }
         }
+
         if ($user->save()){
             return response()->json(['success' => true, 'message' => "Dados actualizados com sucesso.", 'data' => $user]);
         }
