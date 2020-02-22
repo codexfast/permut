@@ -55,10 +55,14 @@
             <!-- End Compass Content -->
           </div>
     
-          <div class="tab-pane fade" id="pills-search" role="tabpanel" aria-labelledby="pills-search">...</div>
+          <div class="tab-pane fade" id="pills-search" role="tabpanel" aria-labelledby="pills-search">
+            ...
+          </div>
           <div class="tab-pane fade" id="pills-settings" role="tabpanel" aria-labelledby="pills-settings-tab">
             <div class="container">
-              <SectionCard title="Informações de Usuário" faIcon="fa fa-user mr-1"/>
+              <SectionCard title="Informações de Usuário" faIcon="fa fa-user mr-1">
+                <UpdateUser />
+              </SectionCard>
             </div>
           </div>
           
@@ -75,6 +79,7 @@ import License from "./sub-components/License.vue";
 import CommonCard from "./sub-components/CommonCard.vue";
 import Banner from "./sub-components/Banner.vue";
 import SectionCard from "./sub-components/SectionCard.vue";
+import UpdateUser from "./forms/UpdateUser.vue";
 
 
 export default {
@@ -83,7 +88,7 @@ export default {
     CommonCard,
     SectionCard,
     Banner,
-
+    UpdateUser
   },
   
   computed: {

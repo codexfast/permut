@@ -4,19 +4,20 @@
             <i :class="faIcon"></i>{{title}}
         </div>
         <div class="card-body">
-            <UpdateUser />
+            <!-- <UpdateUser /> -->
+            <slot />
         </div>
     </div>
 </template>
 
 <script>
 
-import UpdateUser from '../forms/UpdateUser.vue';
+// import UpdateUser from '../forms/UpdateUser.vue';
 
 export default {
     name: 'SectionCard',
     components: {
-        UpdateUser,
+        // UpdateUser,
     },
     props: [
         'title',
