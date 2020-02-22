@@ -68591,8 +68591,8 @@ function setAuthorizationAdmin(token) {
   axios.defaults.headers.common["Authorization"] = "Bearer ".concat(token);
   window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
     broadcaster: 'pusher',
-    key: "",
-    cluster: "mt1",
+    key: "80b3f61dbf472916abed",
+    cluster: "ap2",
     encrypted: true,
     host: location.host,
     csrfToken: csrf_token.content,
@@ -68903,7 +68903,7 @@ var admin = Object(_helpers_auth__WEBPACK_IMPORTED_MODULE_0__["getLocalAdmin"])(
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\User\Desktop\Dev\PHP\laravel\permut\resources\js\admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! D:\Repositories\Begrand\permut\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })

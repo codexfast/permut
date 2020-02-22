@@ -337,7 +337,7 @@ export default {
 
       let hour_parsed = parseInt(operation / 60);
       if (operation < 60) {
-        return operation + " min";
+        return  "Há " +operation + " min";
       } else if (hour_parsed < 6) {
         return "Há " + hour_parsed + (hour_parsed == 1 ? " hora" : " horas");
       } else {

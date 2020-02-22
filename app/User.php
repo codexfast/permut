@@ -19,7 +19,7 @@ class User extends AuthenticatableForUser implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'whatsapp', 'position_id', 'state_id', 'institution_id', 'licensed'. 'type'
+        'name', 'email', 'password', 'avatar', 'whatsapp', 'position_id', 'state_id', 'institution_id', 'licensed', 'type'
     ];
     public function sendPasswordResetNotification($token){
 
