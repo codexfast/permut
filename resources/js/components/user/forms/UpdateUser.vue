@@ -2,7 +2,7 @@
   <form @submit.prevent="update">
     <div class="form-group">
       <label for="email">Nome</label>
-      <input type="text" class="form-control" id="name" :value="user.name" name="name" required />
+      <input type="text" class="form-control" id="name" v-model="user.name" required />
     </div>
 
     <div class="form-group">
@@ -12,10 +12,10 @@
         class="form-control"
         id="email"
         aria-describedby="emailHelp"
-        :value="user.email"
+        v-model="user.email"
         disabled
         required
-        name="email"
+
       />
       <small id="emailHelp" class="form-text text-muted">Endereço de e-mail não pode ser alterado</small>
     </div>
@@ -27,9 +27,9 @@
         class="form-control"
         id="phone"
         aria-describedby="emailHelp"
-        :value="user.whatsapp"
+        v-model="user.whatsapp"
         pattern="[0-9]+"
-        name="phone"
+
         required
       />
     </div>
