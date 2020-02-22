@@ -13,7 +13,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Auth\Events\PasswordReset;
-
+use Illuminate\Support\Str;
 use Illuminate\Auth\Events\Registered;
 
 
@@ -24,6 +24,15 @@ class UserController extends Controller
     use SendsPasswordResetEmails, ResetsPasswords {
         SendsPasswordResetEmails::broker insteadof ResetsPasswords;
         ResetsPasswords::credentials insteadof SendsPasswordResetEmails;
+    }
+
+    static function str_contains($haystack, $needle, $ignoreCase = false) {
+        if ($ignoreCase) {
+            $haystack = strtolower($haystack);
+            $needle   = strtolower($needle);
+        }
+        $needlePos = strpos($haystack, $needle);
+        return ($needlePos === false ? false : ($needlePos+1));
     }
 
     public function sendPasswordResetLink(Request $request)
@@ -173,7 +182,7 @@ class UserController extends Controller
                 );
                 if (in_array($format, $allowedExtensions)) {
                     $decoded = base64_decode($explode[1]);
-                    if (str_contains($explode[0], 'jpeg')){
+                    if (self::str_contains($explode[0], 'jpeg')){
                         $extension ='jpg';
                     }
                     else{
@@ -184,10 +193,11 @@ class UserController extends Controller
                         $name = $expl[0];
                     }
                     else {
-                        $name = $user->id.kebab_case($user->name);
+                        // $name = $user->id.kebab_case($user->name);
+                        $name = Str::kebab($user->name);
                     }
                     $fileName ="{$name}.{$extension}";
-                    $path= public_path().'/storage/users/'. $fileName;
+                    $path= public_path().'\\storage\\users\\'. $fileName;
                     file_put_contents($path, $decoded);
                     $user->avatar = $fileName;
                 }
