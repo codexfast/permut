@@ -16,6 +16,16 @@
             $institutions = Institution::orderBy('state')->get();
             return response()->json(['message' => "Operação realizada com sucesso.", 'institutions' => $institutions, 'success' => true]);
         }
+
+        public function getInstitutionByCity($id) {
+            $institutions = Institution::where('institutions.city_id', $id)
+                ->select('institutions.*')
+                ->orderBy('institutions.name')->get();
+
+
+            return response()->json(['message' => "Operação realizada com sucesso.", 'institutions' => $institutions, 'success' => true]);
+        }
+
         public function create(Request $request) {
             $validator = Validator::make($request->all(), [
                 'institution' => 'required|string|max:255|unique:institutions',

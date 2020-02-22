@@ -13,7 +13,7 @@
     class PositionController extends Controller
     {
         public function get(){
-            $positions = Position::orderBy('state')->get();
+            $positions = Position::orderBy('position')->get();
             return response()->json(['message' => "Operação realizada com sucesso.", 'positions' => $positions, 'success' => true]);
         }
         public function create(Request $request) {
