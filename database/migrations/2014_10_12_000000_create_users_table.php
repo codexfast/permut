@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->bigInteger('institution_id')->unsigned()->nullable();
             $table->foreign('institution_id')->references('id')->on('institutions')->onDelete('cascade');
             $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('last_login_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
