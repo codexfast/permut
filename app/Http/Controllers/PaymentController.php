@@ -5,6 +5,7 @@
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Validator;
     use App\Models\Payment;
+    use App\Models\RateSetting;
     use App\User;
     use JWTAuth;
     use DB;
@@ -24,7 +25,9 @@
         }
         public function create(Request $request) {
             if ($request->user()->licensed != 1){
-                $amount = 5;
+                
+                $amount = DB::table('rate_settings')->first()->rate_initial;
+
                 $preference_data = array (
                     "items" => array (
                         array (
