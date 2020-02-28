@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
                 'position_id'=> '1',
                 'institution_id'=> '1',
                 'type'=>'0',
-                'licensed'=>'1',
+                'licensed'=>'0',
                 'whatsapp'=>'244991772789',
                 'password' => Hash::make('admin123'),
                 'email_verified_at'=>Carbon:: now()-> format('Y-m-d H:i:s'),
