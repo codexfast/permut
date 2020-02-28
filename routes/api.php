@@ -21,6 +21,7 @@ Route::get('positions', 'PositionController@get');
 Route::get('institution', 'InstitutionController@get');
 Route::get('institution/{id}', 'InstitutionController@getInstitutionByCity');
 Route::get('payment-notify', 'PaymentController@check');
+Route::get('settings', 'RateController@get');
 //both
 
 //user
