@@ -37,7 +37,7 @@
     <div class="form-group">
       <!-- Only MG -->
       <label for="citySelect">Cidade</label>
-      <select class="form-control" id="citySelect" v-model="user.city_id">
+      <select class="form-control" id="citySelect" v-model="user.city_id" v-on:change="() => this.getInstitutionByCity(user.city_id)">
         <option value selected>Selecione a sua cidade</option>
         <option v-for="(city, idx) in cities" :key="idx" v-bind:value="city.id">{{city.city}}</option>
       </select>
@@ -48,12 +48,12 @@
     <div class="form-group">
       <!-- Only City on MG -->
       <label for="citySelect">Instituição</label>
-      <select class="form-control" id="institutionSelect" v-model="user.institution_id" v-on:change="this.getPositions">
+      <select class="form-control" id="institutionSelect" v-model="user.institution_id" >
         <option value selected>Selecione a sua instituição</option>
         <option v-for="(institution, idx) in institutions" :key="idx" v-bind:value="institution.id">{{institution.name}}</option>
       </select>
 
-      <small id="institutionSelect" class="form-text text-muted">Apenas regiões de Minas Gerais</small>
+      <small id="institutionSelect" class="form-text text-muted">Apenas instituições de Minas Gerais</small>
     </div>
 
     <div class="form-group">
@@ -63,8 +63,6 @@
         <option value selected>Selecione a sua instituição</option>
         <option v-for="(position, idx) in positions" :key="idx" v-bind:value="position.id">{{position.position}}</option>
       </select>
-
-      <small id="institutionSelect" class="form-text text-muted">Apenas regiões de Minas Gerais</small>
     </div>
 
     <div class="form-group">
@@ -170,7 +168,8 @@ export default {
         })
         .finally(() => {});
     },
-    async getInstitutionByCity(id) {
+    async getInstitutionByCity(id = this.user.city_id) {
+
       axios
         .get(`/institution/${id}`)
         .then(response => {
